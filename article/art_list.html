@@ -6,16 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- 导入第三方样式 -->
     <link rel="stylesheet" href="../assets/lib/layui/css/layui.css">
+    <!-- 导入自己的样式 -->
     <link rel="stylesheet" href="../assets/css/article/art_list.css">
 </head>
 
 <body>
+    <!-- 卡片 -->
     <div class="layui-card">
         <div class="layui-card-header">卡片面板</div>
         <div class="layui-card-body">
             <!-- 筛选区域 -->
             <form class="layui-form" id="form-search">
+                <!-- layui-inline用来使多行文本框在一行显示 -->
                 <div class="layui-form-item layui-inline">
                     <select name="cate_id">
 
@@ -26,7 +30,6 @@
                         <option value="">所有状态</option>
                         <option value="0">已发布</option>
                         <option value="1">草稿</option>
-
                     </select>
                 </div>
                 <div class="layui-form-item layui-inline">
@@ -35,7 +38,9 @@
             </form>
             <!-- 列表区域 -->
             <table class="layui-table">
+                <!-- 用来定义每一列的宽度 -->
                 <colgroup>
+                    <!-- 第一列没有设置宽度，代表自适应 -->
                     <col>
                     <col width="150">
                     <col width="180">
@@ -52,7 +57,7 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                    <!-- 此处每一行数据用模板引擎渲染 -->
                 </tbody>
             </table>
             <!-- 分页区域 -->
@@ -60,8 +65,8 @@
         </div>
     </div>
 
+    <!-- 表单每一行数据的模板 -->
     <script type="text/html" id="tpl-art">
-
         {{each data}}
         <tr>
             <td>{{$value.title}}</td>
@@ -70,12 +75,14 @@
             <td>{{$value.state}}</td>
             <td>
                 <button type="button" class="layui-btn layui-btn-xs">编辑</button>
+                <!-- 自定义data-id属性，用来存储Id值 -->
                 <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-delete" data-id="{{$value.Id}}">删除</button>
             </td>
         </tr>
         {{/each}}
     </script>
 
+    <!-- 文章类型选择模板，在js中用模板引擎组装 -->
     <script type="text/html" id="tpl-cate">
         <option value="">所有分类</option>
         {{each data}}
@@ -83,9 +90,12 @@
         {{/each}}
     </script>
 
+    <!-- 导入第三方脚本 -->
     <script src="../assets/lib/layui/layui.all.js"></script>
     <script src="../assets/lib/jquery.js"></script>
+    <!-- 导入模板引擎脚本 -->
     <script src="../assets/lib/template-web.js"></script>
+    <!-- 导入自定义脚本 -->
     <script src="../assets/js/baseAPI.js"></script>
     <script src="../assets/js/article/art_list.js"></script>
 </body>
